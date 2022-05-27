@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: ViewModel = ViewModel()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List(viewModel.users, id: \.self) { user in
+            VStack(alignment: .leading) {
+                (Text(user.fname) + Text(user.lname))
+                    .font(.system(size: 20, weight: .semibold))
+                
+                Text(user.city)
+            }
+        }
     }
 }
 
